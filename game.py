@@ -27,8 +27,8 @@ class Triangle :
     # ID is defined by the order of triangle creation. The higher the ID, the newer the triangle. 
     # In the beginning position, the upper triangle is Triangle ID 1, increasing clockwise up to the amount of players.
     id : int
-    troops : int = field(default=1)
     has_capital : bool = field(default=False)
+    troops : int = field(default=1)
 
     def divide(self) : 
         return [self, Triangle(self.owner, Triangle.newest_id)]
@@ -48,18 +48,15 @@ class Player :
     cap_location : Triangle
     money : int = field(default=10000)
     triangles_owned : int = field(default=1)
-
+      
     def build() :
         return 0
 
 @dataclass 
 class Board :
-    num_triangles : int
+    triangles : List[Triangle]
     cap_locations : Dict[Player, Triangle]
 
-    def create() : 
-        return 0
-    
     def increase_size() :
         return 0
 
@@ -72,8 +69,14 @@ class Game :
     board : Board
     game_type : int
 
-    def start() :
-        return 0
+    def start(players) :
+        triangles = []
+        cap_locations = {}
+        for i in range (0, len(players)) :
+            triangle = Triangle(players[i].id, i, True)
+            triangles.append(triangle)
+            cap_locations[players[i].id] = triangle
+        board = Board(triangles, cap_locations)
 
     def play_turn() :
         return 0
