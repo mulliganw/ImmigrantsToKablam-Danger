@@ -77,6 +77,7 @@ class Game :
             triangles.append(triangle)
             cap_locations[players[i].id] = triangle
         board = Board(triangles, cap_locations)
+        return board
 
     def play_turn() :
         return 0
