@@ -21,6 +21,7 @@ class Triangle :
     has_capital : bool
 
     def divide(self) : 
+        return 0
 
 
 @dataclass 
